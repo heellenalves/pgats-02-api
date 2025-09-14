@@ -44,7 +44,11 @@ describe('Transfer Controller', () => {
             sinon.restore();
         });
 
-        it('Usando Mocks - Quando informo valores válidos recebo 201', async () => {
+        it.only('Usando Mocks - Quando informo valores válidos recebo 201', async () => {
+            // Preparando os dados
+                // Carregar o arquivo
+                    // Preparar a forma de ignorar os campos dinâmicos
+            
             //Mockar apenas a função transfer do service
             const transferServiceMock = sinon.stub(transferService, 'createTransfer')
             transferServiceMock.returns({ 
@@ -63,9 +67,18 @@ describe('Transfer Controller', () => {
                 });
 
             expect(resposta.status).to.equal(201);
-            expect(resposta.body).to.have.property('from', 'julio')
-            expect(resposta.body).to.have.property('to', 'priscila')
-            expect(resposta.body).to.have.property('amount', 100)
+
+            //Validação com um fixture
+            const respostaEsperada = require('../fixture/respostas/quandoInformoValoresValidosTenhoSucessoCom201')
+            delete resposta.body.date;
+            delete respostaEsperada.date;
+            expect(resposta.body).to.deep.equal(respostaEsperada);
+
+            // Um expect para comparar a Resposta.body com a String contida no arquivo
+            //expect(resposta.body).to.have.property('from', 'julio')
+            //expect(resposta.body).to.have.property('to', 'priscila')
+            //expect(resposta.body).to.have.property('amount', 100)
+
 
             // Reseto o Mock
             sinon.restore();
