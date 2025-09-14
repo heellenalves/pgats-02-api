@@ -24,6 +24,8 @@ describe('Transfer Controller', () => {
             expect(resposta.status).to.equal(400);
             expect(resposta.body).to.have.property('error', 'Usuário não encontrado')
         });
+
+
         it('Usando Mocks - Quando informo remetente e destinatário inexistentes, recebo 400', async () => {
             //Mockar apenas a função transfer do service
             const transferServiceMock = sinon.stub(transferService, 'createTransfer')
