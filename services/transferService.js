@@ -13,7 +13,7 @@ function createTransfer({ from, to, amount }) {
   const sender = users.find(u => u.username === from);
   const recipient = users.find(u => u.username === to);
   if (!sender || !recipient) {
-    throw new TransferError('Usuário não não encontrado', 'user_not_found');
+    throw new TransferError('Usuário não encontrado', 'user_not_found');
   }
   if (recipient.isFavorecido || amount < 5000) {
     const transfer = { from, to, amount, date: new Date() };
