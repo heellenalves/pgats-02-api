@@ -11,7 +11,15 @@ router.post('/', (req, res) => {
     const transfer = transferService.createTransfer({ from, to, amount });
     res.status(201).json(transfer);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    if (err.name === 'TransferError') {
+      if (err.type === 'user_not_found') {
+        return res.status(400).json({ error: err.message });
+      }
+      if (err.type === 'transfer_rule') {
+        return res.status(403).json({ error: err.message });
+      }
+    }
+    res.status(500).json({ error: 'Erro interno do servidor' });
   }
 });
 
