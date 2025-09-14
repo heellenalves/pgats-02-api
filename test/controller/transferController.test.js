@@ -46,7 +46,7 @@ describe('Transfer Controller', () => {
             sinon.restore();
         });
 
-        it.only('Usando Mocks - Quando informo valores válidos recebo 201', async () => {
+        it('Usando Mocks - Quando informo valores válidos recebo 201', async () => {
             // Preparando os dados
                 // Carregar o arquivo
                     // Preparar a forma de ignorar os campos dinâmicos
