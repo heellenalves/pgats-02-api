@@ -59,7 +59,19 @@
           }
         },
         "responses": {
-          "200": { "description": "Login bem-sucedido" },
+          "200": {
+            "description": "Login bem-sucedido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string", "description": "JWT para autenticação" }
+                  }
+                }
+              }
+            }
+          },
           "401": { "description": "Credenciais inválidas" }
         }
       }
