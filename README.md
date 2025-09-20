@@ -6,9 +6,14 @@ Esta API permite realizar operações de registro, login, consulta de usuários 
 
 1. Clone o repositório ou copie os arquivos para seu ambiente.
 2. Instale as dependências:
-   ```powershell
-   npm install express swagger-ui-express
-   ```
+  ```powershell
+  npm install
+  ```
+
+3. Configure a variável de ambiente JWT_SECRET antes de iniciar o servidor:
+  ```powershell
+  $env:JWT_SECRET="suaChaveSecretaAqui"
+  ```
 
 ## Como executar
 
@@ -28,6 +33,7 @@ Esta API permite realizar operações de registro, login, consulta de usuários 
 ### Login de usuário
 - `POST /api/users/login`
   - Body: `{ "username": "string", "password": "string" }`
+  - Resposta: `{ "token": "<JWT>" }`
 
 ### Consulta de usuários
 - `GET /api/users`
